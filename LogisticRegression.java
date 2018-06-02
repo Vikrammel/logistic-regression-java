@@ -19,14 +19,30 @@ public class LogisticRegression {
 
         /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
         public LogisticRegression(int n) { // n is the number of weights to be learned
+		double[] tempWeights;
+		tempWeights = new double[n];
+		for (i=0; i<n; i++){
+			tempWeights[i] = 0;
+		}
+		this.weights = tempWeights;
         }
 
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
         private double weightsL2Norm(){
+		// sqrt( Sigma(|weights[i]|^2) )
+		float addedSquares = 0.0;
+		for(i=0; i<weights.length(); i++){
+			addedSquares += (weights[i] * weights[i])
+		}
+		return Math.sqrt(addedSquares);
         }
 
         /** TODO: Implement the sigmoid function **/
         private static double sigmoid(double z) {
+		// 1/(1 + e^-z)
+		// e^x = java.lang.Math.exp(double x)
+		float sigmoid = 0.0
+		return (1 / (1 + Math.exp(z * -1))
         }
 
         /** TODO: Helper function for prediction **/
