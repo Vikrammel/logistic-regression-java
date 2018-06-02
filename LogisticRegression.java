@@ -49,12 +49,31 @@ public class LogisticRegression {
         /** Takes a test instance as input and outputs the probability of the label being 1 **/
         /** This function should call sigmoid() **/
         private double probPred1(double[] x) {
+		// = sigmoid( sigma(wi * xi) )
+		if(weights.length() != x.length()){
+			throw new mismatchedLengthException;
+		}
+		double sigmaWeightsTimesXi = 0.0;
+		for(i=0; i<weights.length(); i++){
+			sigmaWeightsTimesXi += (weights[i] * x[i])
+		}
+		return sigmoid(sigmaWeightsTimesXi);
         }
 
         /** TODO: The prediction function **/
         /** Takes a test instance as input and outputs the predicted label **/
         /** This function should call probPred1() **/
         public int predict(double[] x) {
+		// e^-(sigma(wi * xi)) * sigmoid(Sigma(wi * xi))
+		if(weights.length() != x.length()){
+			throw new mismatchedLengthException;
+		}
+		if(probPred1(x) >= 0.5){
+			return 1;
+		}
+		else{
+			return 0;
+		}
         }
 
         /** This function takes a test set as input, call the predict() to predict a label for it, and prints the accuracy, P, R, and F1 score of the positive class and negative class and the confusion matrix **/
@@ -65,6 +84,11 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
+	    Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
+	    scanner.useDelimiter(",");
+	    while(scanner.hasNext()){
+	    
+	    }
 
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
