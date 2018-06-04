@@ -129,7 +129,9 @@ public class LogisticRegression {
                 for (int i=0; i < instances.size(); i++) {
                     // TODO: Train the model
                     //gradient ascent
-                    
+                    double h = probPred1(instances.get(i).x)
+                    double error = instances.get(i).label - h
+					weights[i] = weigh
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
