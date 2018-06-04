@@ -42,7 +42,7 @@ public class LogisticRegression {
 		// 1/(1 + e^-z)
 		// e^x = java.lang.Math.exp(double x)
 		double sigmoid = 0.0;
-		return (1 / (1 + Math.exp(z * -1)));
+		return (1.0 / (1.0 + Math.exp((z * -1))));
         }
 
         /** TODO: Helper function for prediction **/
@@ -54,7 +54,7 @@ public class LogisticRegression {
 		if(weights.length() != x.length()){
 			throw new mismatchedLengthException;
 		}*/
-		double sigmaWeightsTimesXi = 0.0;
+			double sigmaWeightsTimesXi = 0.0;
 			for(int i=0; i<weights.length; i++){
 				sigmaWeightsTimesXi += (weights[i] * x[i]);
 			}
@@ -86,32 +86,31 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
-			/*
-			Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
-			scanner.useDelimiter(",");
-			// count number of features in dataset
-			int numFeatures = 0;
-			while(scanner.hasNext() && scanner.next() != "label"){
-				numFeatures++;
-			}
-			//store feature vectors and labels
-			double instances[4459][numFeatures];
-			double labels[4459];
-			for(int i = 0; i<4459;i++){
-			for(int j =0; j<numFeatures + 1; j++){
-				if(j == numFeatures){
-					label[i] = scanner.next();
+			for(LRInstance instance : testInstances){
+				int pred = predict(instance.x);
+				int actual = instance.label;
+				System.out.println("pred: " + pred + "\tactual: " + actual);
+				if (pred == actual){
+					if(pred == 1){//true pos
+						System.out.println("TP");
+						TP++;
+					}
+					else{//true neg
+						System.out.println("TN");
+						TN++;
+					}
 				}
-				instances[i][j] = scanner.next();
+				else{
+					if(pred == 1){//false pos
+						System.out.println("FP");
+						FP++;
+					}
+					else{//false neg
+						System.out.println("FN");
+						FN++;
+					}
+				}
 			}
-			}
-			//run test instances through prediction function and compare to labels array
-			for(int i = 0; i < 4459; i++){
-			int predictedLabel = predict(instances[i]);
-			int realLabel = labels[i];
-			}
-			*/
-			//System.out.println(testInstances);
 			
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
@@ -129,6 +128,7 @@ public class LogisticRegression {
                 double lik = 0.0; // Stores log-likelihood of the training data for this iteration
                 for (int i=0; i < instances.size(); i++) {
                     // TODO: Train the model
+                    //gradient ascent
                     
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
 				}
