@@ -19,12 +19,12 @@ public class LogisticRegression {
 
         /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
         public LogisticRegression(int n) { // n is the number of weights to be learned
-		double[] tempWeights;
-		tempWeights = new double[n];
-		for (int i=0; i<n; i++){
-			tempWeights[i] = 0;
-		}
-		this.weights = tempWeights;
+			double tempWeights[];
+			tempWeights = new double[n];
+			for (int i=0; i<n; i++){
+				tempWeights[i] = 0.0;
+			}
+			weights = tempWeights;
         }
 
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
@@ -55,10 +55,10 @@ public class LogisticRegression {
 			throw new mismatchedLengthException;
 		}*/
 		double sigmaWeightsTimesXi = 0.0;
-		for(int i=0; i<weights.length; i++){
-			sigmaWeightsTimesXi += (weights[i] * x[i]);
-		}
-		return sigmoid(sigmaWeightsTimesXi);
+			for(int i=0; i<weights.length; i++){
+				sigmaWeightsTimesXi += (weights[i] * x[i]);
+			}
+			return sigmoid(sigmaWeightsTimesXi);
         }
 
         /** TODO: The prediction function **/
@@ -70,12 +70,12 @@ public class LogisticRegression {
 		if(weights.length() != x.length()){
 			throw new mismatchedLengthException;
 		}*/
-		if(probPred1(x) >= 0.5){
-			return 1;
-		}
-		else{
-			return 0;
-		}
+			if(probPred1(x) >= 0.5){
+				return 1;
+			}
+			else{
+				return 0;
+			}
         }
 
         /** This function takes a test set as input, call the predict() to predict a label for it, and prints the accuracy, P, R, and F1 score of the positive class and negative class and the confusion matrix **/
@@ -86,32 +86,33 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
-	    /*
-	    Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
-	    scanner.useDelimiter(",");
-	    // count number of features in dataset
- 	    int numFeatures = 0;
-	    while(scanner.hasNext() && scanner.next() != "label"){
-	    	numFeatures++;
-	    }
-	    //store feature vectors and labels
-	    double instances[4459][numFeatures];
-	    double labels[4459];
-	    for(int i = 0; i<4459;i++){
-		for(int j =0; j<numFeatures + 1; j++){
-			if(j == numFeatures){
-				label[i] = scanner.next();
+			/*
+			Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
+			scanner.useDelimiter(",");
+			// count number of features in dataset
+			int numFeatures = 0;
+			while(scanner.hasNext() && scanner.next() != "label"){
+				numFeatures++;
 			}
-			instances[i][j] = scanner.next();
-		}
-	    }
-	    //run test instances through prediction function and compare to labels array
-	    for(int i = 0; i < 4459; i++){
-		int predictedLabel = predict(instances[i]);
-		int realLabel = labels[i];
-	    }
-	    */
-	    System.out.println(testInstances);
+			//store feature vectors and labels
+			double instances[4459][numFeatures];
+			double labels[4459];
+			for(int i = 0; i<4459;i++){
+			for(int j =0; j<numFeatures + 1; j++){
+				if(j == numFeatures){
+					label[i] = scanner.next();
+				}
+				instances[i][j] = scanner.next();
+			}
+			}
+			//run test instances through prediction function and compare to labels array
+			for(int i = 0; i < 4459; i++){
+			int predictedLabel = predict(instances[i]);
+			int realLabel = labels[i];
+			}
+			*/
+			//System.out.println(testInstances);
+			
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
             System.out.println("P, R, and F1 score of the negative class=" + p_neg + " " + r_neg + " " + f_neg);
@@ -141,6 +142,8 @@ public class LogisticRegression {
 
             /** TODO: Constructor for initializing the Instance object **/
             public LRInstance(int label, double[] x) {
+				this.label = label;
+				this.x = x;
             }
         }
 

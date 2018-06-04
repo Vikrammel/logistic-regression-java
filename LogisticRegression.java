@@ -19,12 +19,12 @@ public class LogisticRegression {
 
         /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
         public LogisticRegression(int n) { // n is the number of weights to be learned
-		double[] tempWeights;
-		tempWeights = new double[n];
-		for (int i=0; i<n; i++){
-			tempWeights[i] = 0;
-		}
-		this.weights = tempWeights;
+			double tempWeights[];
+			tempWeights = new double[n];
+			for (int i=0; i<n; i++){
+				tempWeights[i] = 0;
+			}
+			this.weights = tempWeights;
         }
 
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
