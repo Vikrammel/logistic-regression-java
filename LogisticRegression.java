@@ -21,7 +21,7 @@ public class LogisticRegression {
         public LogisticRegression(int n) { // n is the number of weights to be learned
 		double[] tempWeights;
 		tempWeights = new double[n];
-		for (i=0; i<n; i++){
+		for (int i=0; i<n; i++){
 			tempWeights[i] = 0;
 		}
 		this.weights = tempWeights;
@@ -30,9 +30,9 @@ public class LogisticRegression {
         /** TODO: Implement the function that returns the L2 norm of the weight vector **/
         private double weightsL2Norm(){
 		// sqrt( Sigma(|weights[i]|^2) )
-		float addedSquares = 0.0;
-		for(i=0; i<weights.length(); i++){
-			addedSquares += (weights[i] * weights[i])
+		double addedSquares = 0.0;
+		for(int i=0; i<weights.length; i++){
+			addedSquares += (weights[i] * weights[i]);
 		}
 		return Math.sqrt(addedSquares);
         }
@@ -41,8 +41,8 @@ public class LogisticRegression {
         private static double sigmoid(double z) {
 		// 1/(1 + e^-z)
 		// e^x = java.lang.Math.exp(double x)
-		float sigmoid = 0.0
-		return (1 / (1 + Math.exp(z * -1))
+		double sigmoid = 0.0;
+		return (1 / (1 + Math.exp(z * -1)));
         }
 
         /** TODO: Helper function for prediction **/
@@ -50,14 +50,15 @@ public class LogisticRegression {
         /** This function should call sigmoid() **/
         private double probPred1(double[] x) {
 		// = sigmoid( sigma(wi * xi) )
+		/*
 		if(weights.length() != x.length()){
 			throw new mismatchedLengthException;
-		}
+		}*/
 		double sigmaWeightsTimesXi = 0.0;
-		for(i=0; i<weights.length(); i++){
-			sigmaWeightsTimesXi += (weights[i] * x[i])
-		}
-		return sigmoid(sigmaWeightsTimesXi);
+			for(int i=0; i<weights.length; i++){
+				sigmaWeightsTimesXi += (weights[i] * x[i]);
+			}
+			return sigmoid(sigmaWeightsTimesXi);
         }
 
         /** TODO: The prediction function **/
@@ -65,15 +66,16 @@ public class LogisticRegression {
         /** This function should call probPred1() **/
         public int predict(double[] x) {
 		// e^-(sigma(wi * xi)) * sigmoid(Sigma(wi * xi))
+		/*
 		if(weights.length() != x.length()){
 			throw new mismatchedLengthException;
-		}
-		if(probPred1(x) >= 0.5){
-			return 1;
-		}
-		else{
-			return 0;
-		}
+		}*/
+			if(probPred1(x) >= 0.5){
+				return 1;
+			}
+			else{
+				return 0;
+			}
         }
 
         /** This function takes a test set as input, call the predict() to predict a label for it, and prints the accuracy, P, R, and F1 score of the positive class and negative class and the confusion matrix **/
@@ -84,12 +86,33 @@ public class LogisticRegression {
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
 
             // TODO: write code here to compute the above mentioned variables
-	    Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
-	    scanner.useDelimiter(",");
-	    while(scanner.hasNext()){
-	    
-	    }
-
+			/*
+			Scanner scanner = new Scanner(new File("HW3_TianyiLuo_train.csv"));
+			scanner.useDelimiter(",");
+			// count number of features in dataset
+			int numFeatures = 0;
+			while(scanner.hasNext() && scanner.next() != "label"){
+				numFeatures++;
+			}
+			//store feature vectors and labels
+			double instances[4459][numFeatures];
+			double labels[4459];
+			for(int i = 0; i<4459;i++){
+			for(int j =0; j<numFeatures + 1; j++){
+				if(j == numFeatures){
+					label[i] = scanner.next();
+				}
+				instances[i][j] = scanner.next();
+			}
+			}
+			//run test instances through prediction function and compare to labels array
+			for(int i = 0; i < 4459; i++){
+			int predictedLabel = predict(instances[i]);
+			int realLabel = labels[i];
+			}
+			*/
+			System.out.println(testInstances);
+			
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
             System.out.println("P, R, and F1 score of the negative class=" + p_neg + " " + r_neg + " " + f_neg);
