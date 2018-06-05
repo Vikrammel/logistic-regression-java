@@ -17,7 +17,7 @@ public class LogisticRegression {
         /** the number of iterations */
         private int ITERATIONS = 200;
 
-        /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
+        /* TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
         public LogisticRegression(int n) { // n is the number of weights to be learned
 			double tempWeights[];
 			tempWeights = new double[n];
@@ -27,7 +27,7 @@ public class LogisticRegression {
 			weights = tempWeights;
         }
 
-        /** TODO: Implement the function that returns the L2 norm of the weight vector **/
+        /* TODO: Implement the function that returns the L2 norm of the weight vector **/
         private double weightsL2Norm(){
 		// sqrt( Sigma(|weights[i]|^2) )
 		double addedSquares = 0.0;
@@ -37,7 +37,7 @@ public class LogisticRegression {
 		return Math.sqrt(addedSquares);
         }
 
-        /** TODO: Implement the sigmoid function **/
+        /* TODO: Implement the sigmoid function **/
         private static double sigmoid(double z) {
 		// 1/(1 + e^-z)
 		// e^x = java.lang.Math.exp(double x)
@@ -45,7 +45,7 @@ public class LogisticRegression {
 		return (1.0 / (1.0 + Math.exp((z * -1))));
         }
 
-        /** TODO: Helper function for prediction **/
+        /* TODO: Helper function for prediction **/
         /** Takes a test instance as input and outputs the probability of the label being 1 **/
         /** This function should call sigmoid() **/
         private double probPred1(double[] x) {
@@ -61,7 +61,7 @@ public class LogisticRegression {
 			return sigmoid(sigmaWeightsTimesXi);
         }
 
-        /** TODO: The prediction function **/
+        /* TODO: The prediction function **/
         /** Takes a test instance as input and outputs the predicted label **/
         /** This function should call probPred1() **/
         public int predict(double[] x) {
@@ -129,9 +129,12 @@ public class LogisticRegression {
                 for (int i=0; i < instances.size(); i++) {
                     // TODO: Train the model
                     //gradient ascent
-                    double h = probPred1(instances.get(i).x)
-                    double error = instances.get(i).label - h
-					weights[i] = weigh
+                    double h = probPred1(instances.get(i).x);
+                    double error = instances.get(i).label - h;
+                    for(int j=0; j<weights.length; j++){
+                        weights[j] = weights[j] + (rate * instances.get(i).x[j] * error);
+                    }
+					//weights[i] = weigh
                     // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);

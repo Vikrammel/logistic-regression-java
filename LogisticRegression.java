@@ -17,7 +17,7 @@ public class LogisticRegression {
         /** the number of iterations */
         private int ITERATIONS = 200;
 
-        /** TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. **/
+        /* TODO: Constructor initializes the weight vector. Initialize it by setting it to the 0 vector. */
         public LogisticRegression(int n) { // n is the number of weights to be learned
 			double tempWeights[];
 			tempWeights = new double[n];
@@ -27,7 +27,7 @@ public class LogisticRegression {
 			this.weights = tempWeights;
         }
 
-        /** TODO: Implement the function that returns the L2 norm of the weight vector **/
+        /* TODO: Implement the function that returns the L2 norm of the weight vector */
         private double weightsL2Norm(){
 		// sqrt( Sigma(|weights[i]|^2) )
 		double addedSquares = 0.0;
@@ -37,7 +37,7 @@ public class LogisticRegression {
 		return Math.sqrt(addedSquares);
         }
 
-        /** TODO: Implement the sigmoid function **/
+        /* TODO: Implement the sigmoid function */
         private static double sigmoid(double z) {
 		// 1/(1 + e^-z)
 		// e^x = java.lang.Math.exp(double x)
@@ -45,7 +45,7 @@ public class LogisticRegression {
 		return (1 / (1 + Math.exp(z * -1)));
         }
 
-        /** TODO: Helper function for prediction **/
+        /* TODO: Helper function for prediction */
         /** Takes a test instance as input and outputs the probability of the label being 1 **/
         /** This function should call sigmoid() **/
         private double probPred1(double[] x) {
