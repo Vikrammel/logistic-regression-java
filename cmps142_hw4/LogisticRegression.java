@@ -84,7 +84,6 @@ public class LogisticRegression {
             double p_pos = 0, r_pos = 0, f_pos = 0;
             double p_neg = 0, r_neg = 0, f_neg = 0;
             int TP=0, TN=0, FP=0, FN=0; // TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives
-
             // TODO: write code here to compute the above mentioned variables
 			for(LRInstance instance : testInstances){
 				int pred = predict(instance.x);
@@ -111,7 +110,15 @@ public class LogisticRegression {
 					}
 				}
 			}
-			
+			//compute accuracy
+            acc = (double)(TP + TN) / testInstances.size();
+            //computer specific class's precision, recall, f-measure
+            p_pos = (double)(TP) / (TP + FP);
+            r_pos = (double)(TP) / (TP + FN);
+            p_neg = (double)(TN) / (TN + FN);
+            r_neg = (double)(TN) / (TN + FP);
+            f_pos = (double)(2 * p_pos * r_pos) / (p_pos + r_pos);
+            f_neg = (double)(2 * p_neg * r_neg) / (p_neg + r_neg);
             System.out.println("Accuracy="+acc);
             System.out.println("P, R, and F1 score of the positive class=" + p_pos + " " + r_pos + " " + f_pos);
             System.out.println("P, R, and F1 score of the negative class=" + p_neg + " " + r_neg + " " + f_neg);
