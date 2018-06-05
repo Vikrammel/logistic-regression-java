@@ -131,11 +131,13 @@ public class LogisticRegression {
                     //gradient ascent
                     double h = probPred1(instances.get(i).x);
                     double error = instances.get(i).label - h;
+                    double sigmaWeightsTimesXi = 0.0;
                     for(int j=0; j<weights.length; j++){
                         weights[j] = weights[j] + (rate * instances.get(i).x[j] * error);
+                        // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+                        sigmaWeightsTimesXi += (weights[j] * instances.get(i).x[j]);
                     }
-					//weights[i] = weigh
-                    // TODO: Compute the log-likelihood of the data here. Remember to take logs when necessary
+                    lik += (instances.get(i).label * sigmaWeightsTimesXi) - Math.log(1 + Math.exp(sigmaWeightsTimesXi));
 				}
                 System.out.println("iteration: " + n + " lik: " + lik);
             }
@@ -145,7 +147,7 @@ public class LogisticRegression {
             public int label; // Label of the instance. Can be 0 or 1
             public double[] x; // The feature vector for the instance
 
-            /** TODO: Constructor for initializing the Instance object **/
+            /* TODO: Constructor for initializing the Instance object **/
             public LRInstance(int label, double[] x) {
 				this.label = label;
 				this.x = x;
