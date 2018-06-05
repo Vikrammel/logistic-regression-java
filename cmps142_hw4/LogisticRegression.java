@@ -88,24 +88,24 @@ public class LogisticRegression {
 			for(LRInstance instance : testInstances){
 				int pred = predict(instance.x);
 				int actual = instance.label;
-				System.out.println("pred: " + pred + "\tactual: " + actual);
+//                System.out.println("pred: " + pred + "\tactual: " + actual);
 				if (pred == actual){
 					if(pred == 1){//true pos
-						System.out.println("TP");
+//                        System.out.println("TP");
 						TP++;
 					}
 					else{//true neg
-						System.out.println("TN");
+//                        System.out.println("TN");
 						TN++;
 					}
 				}
 				else{
 					if(pred == 1){//false pos
-						System.out.println("FP");
+//                        System.out.println("FP");
 						FP++;
 					}
 					else{//false neg
-						System.out.println("FN");
+//                        System.out.println("FN");
 						FN++;
 					}
 				}
@@ -132,8 +132,16 @@ public class LogisticRegression {
         /** Also compute the log-likelihood of the data in this function **/
         public void train(List<LRInstance> instances) {
             for (int n = 0; n < ITERATIONS; n++) {
+//                //count # of pos/neg instances
+//                int numPos = 0;
+//                int numNeg = 0;
                 double lik = 0.0; // Stores log-likelihood of the training data for this iteration
                 for (int i=0; i < instances.size(); i++) {
+//                    if(instances.get(i).label == 1){
+//                        numPos++;
+//                    }else{
+//                        numNeg++;
+//                    }
                     // TODO: Train the model
                     //gradient ascent
                     double h = probPred1(instances.get(i).x);
@@ -146,7 +154,10 @@ public class LogisticRegression {
                     }
                     lik += (instances.get(i).label * sigmaWeightsTimesXi) - Math.log(1 + Math.exp(sigmaWeightsTimesXi));
 				}
-                System.out.println("iteration: " + n + " lik: " + lik);
+//                System.out.println("num pos: " + numPos);
+//                System.out.println("num neg: " + numNeg);
+
+//                System.out.println(lik);
             }
         }
 
