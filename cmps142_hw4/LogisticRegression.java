@@ -157,8 +157,7 @@ public class LogisticRegression {
 				}
 //                System.out.println("num pos: " + numPos);
 //                System.out.println("num neg: " + numNeg);
-
-//                System.out.println(lik);
+                System.out.println("iteration: " + n + " lik: " + lik);
             }
         }
 

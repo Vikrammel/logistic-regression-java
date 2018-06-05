@@ -148,7 +148,7 @@ public class LogisticRegression_withBias {
                     }
                     lik += (instances.get(i).label * sigmaWeightsTimesXi) - Math.log(1 + Math.exp(sigmaWeightsTimesXi));
                 }
-//                System.out.println("iteration: " + n + " lik: " + lik);
+                System.out.println("iteration: " + n + " lik: " + lik);
             }
         }
 
